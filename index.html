@@ -107,10 +107,31 @@ h3{font-size:1.12rem;line-height:1.35;font-weight:700;margin-bottom:8px}
 .list li::before{content:"";position:absolute;left:0;top:.7em;width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
 .stack{display:grid;gap:var(--gap);align-content:start;min-width:0}
 
-/* FEATURED PROJECT */
-.proj{display:flex;flex-direction:column}
-.proj .tags{margin-top:18px}
-.proj .actions{margin-top:22px}
+/* PROJECTS */
+.pj-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap);align-items:stretch}
+.pj{display:flex;flex-direction:column;align-items:flex-start;text-align:left;overflow:hidden;padding:clamp(24px,3vw,36px)}
+.pj::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--green),var(--blue));
+  transform:scaleY(.25);transform-origin:top;transition:transform .5s cubic-bezier(.65,0,.35,1);box-shadow:0 0 16px var(--green)}
+.pj:hover::after{transform:scaleY(1)}
+.pj-top{display:flex;align-items:center;gap:10px;margin-bottom:16px;font:600 .78rem var(--mono);color:var(--green)}
+.pj-top i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+.pj h3{font-size:clamp(1.2rem,2.2vw,1.45rem);line-height:1.3;letter-spacing:-.02em;margin-bottom:14px;color:var(--text)}
+.pj .pj-desc{color:var(--mute);font-size:.96rem;line-height:1.7;margin-bottom:20px;max-width:60ch}
+.pj-feature{width:100%;margin-bottom:20px;padding:16px 18px;border-radius:14px;background:rgba(25,245,168,.05);border:1px solid rgba(25,245,168,.22);border-left:3px solid var(--green);
+  transition:background .4s,border-color .4s}
+.pj:hover .pj-feature{background:rgba(25,245,168,.09);border-color:rgba(25,245,168,.4)}
+.pj-feature b{display:block;margin-bottom:6px;font:700 .8rem var(--mono);color:var(--green)}
+.pj-feature p{color:var(--text);opacity:.88;font-size:.92rem;line-height:1.65}
+.pj-meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-bottom:6px;font:.78rem var(--mono);color:var(--mute)}
+.pj-meta span::before{content:"+ ";color:var(--blue)}
+.pj .tags{margin-top:14px;margin-bottom:26px;justify-content:flex-start}
+.pj .tags span{transition:color .3s,border-color .3s,background .3s,transform .3s}
+.pj:hover .tags span{color:var(--text);border-color:rgba(58,168,255,.6);background:rgba(58,168,255,.12)}
+.pj .tags span:hover{transform:translateY(-2px)}
+.pj .actions{margin-top:auto;justify-content:flex-start}
+.pj-note{margin-top:30px;text-align:left;font-size:.92rem;color:var(--mute)}
+.pj-note a{color:var(--green);border-bottom:1px solid rgba(25,245,168,.4);transition:border-color .3s,text-shadow .3s}
+.pj-note a:hover{border-color:var(--green);text-shadow:0 0 14px rgba(25,245,168,.6)}
 
 /* RINGS */
 .rings{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--gap)}
@@ -154,7 +175,7 @@ footer{padding:32px 0 calc(40px + env(safe-area-inset-bottom,0px));text-align:ce
   .menu{position:absolute;top:calc(100% + 10px);left:0;right:0;flex-direction:column;align-items:stretch;gap:4px;padding:12px;border-radius:24px;background:rgba(6,11,18,.95);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid var(--edge);opacity:0;visibility:hidden;transform:translateY(-8px);transition:.3s}
   .menu.open{opacity:1;visibility:visible;transform:none}
   .menu a{padding:14px 18px;font-size:1rem}
-  .c2,.c3{grid-template-columns:minmax(0,1fr)}
+  .c2,.c3,.pj-grid{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:520px){
   .actions .btn{flex:1 1 100%}
@@ -279,42 +300,66 @@ footer{padding:32px 0 calc(40px + env(safe-area-inset-bottom,0px));text-align:ce
 
   <section id="projects">
     <div class="wrap">
-      <div class="head rv"><h2>Projects</h2><p>Selected work. More code lives on my GitHub.</p></div>
-      <div class="cards c2">
-        <div class="glass hov pad proj rv">
-          <p class="when">Cybersecurity project · Python</p>
-          <h3>Automated Port Scanner &amp; Vulnerability Tester</h3>
-          <p>A multi-threaded Python network defense tool that scans target hosts for open ports, identifies exposed services and flags potential vulnerabilities. Concurrent scanning keeps assessments fast, and results are saved automatically to a structured report so findings can be reviewed and acted on.</p>
-          <div class="tags"><span>Python</span><span>Multi-threading</span><span>Network Security</span><span>Vulnerability Assessment</span></div>
-          <div class="actions">
-            <a class="btn btn-primary btn-sm" href="https://github.com/alishba-cyb/network-port-scanner" target="_blank" rel="noopener">View Code</a>
-          </div>
-        </div>
-        <a class="glass pad rv" href="https://github.com/alishba-cyb" target="_blank" rel="noopener">
-          <p class="when">Final year project · QUEST</p>
-          <h3>AI-powered multi-agent academic assistant</h3>
-          <p>A virtual learning application using basic AI modules to give students unified academic help. I ran the testing phase with custom usability questionnaires and used the feedback to verify system behavior, workflow logic and documentation.</p>
-          <div class="tags"><span>AI</span><span>Usability testing</span><span>Python</span></div>
-        </a>
-        <a class="glass pad rv" href="https://github.com/alishba-cyb" target="_blank" rel="noopener">
-          <p class="when">Networking lab</p>
-          <h3>Secure routing simulations</h3>
-          <p>Network topologies built and tested in Cisco Packet Tracer to study secure routing configurations, based on my internship work at PAC Kamra.</p>
-          <div class="tags"><span>Packet Tracer</span><span>Routing</span><span>DHCP</span></div>
-        </a>
-        <a class="glass pad rv" href="https://github.com/alishba-cyb" target="_blank" rel="noopener">
-          <p class="when">Security practice</p>
-          <h3>Web security testing</h3>
-          <p>CTF-style challenges and Burp Suite proxy analysis of HTTP/HTTPS traffic, covering IDOR and weak authentication flaws, plus Nikto scanning.</p>
-          <div class="tags"><span>Burp Suite</span><span>OWASP</span><span>Nikto</span></div>
-        </a>
-        <a class="glass pad rv" href="https://github.com/alishba-cyb" target="_blank" rel="noopener">
-          <p class="when">Traffic and cryptography</p>
-          <h3>Packet analysis and OpenSSL</h3>
-          <p>Traffic inspection with Wireshark and hands-on encryption, decryption and secure hashing from the command line with OpenSSL on Kali Linux.</p>
-          <div class="tags"><span>Wireshark</span><span>OpenSSL</span><span>Kali</span></div>
-        </a>
+      <div class="head rv">
+        <h2>Projects</h2>
+        <p>Two hands-on security tools built from scratch in Python: one watches traffic as it arrives, the other audits what a host exposes.</p>
       </div>
+
+      <div class="pj-grid">
+
+        <article class="glass hov pj rv">
+          <div class="pj-top"><i></i>passive monitoring · Python</div>
+          <h3>Advanced Live Packet Sniffer &amp; Network Threat Analyzer</h3>
+          <p class="pj-desc">An asynchronous, multi-threaded passive network traffic parser written in Python with the Scapy API. It intercepts and dissects raw Layer 3 (IP) and Layer 4 (TCP/UDP) packets as they cross the wire.</p>
+
+          <div class="pj-feature">
+            <b>Unique feature</b>
+            <p>Real-time anomaly heuristics detect plaintext credential leaks and rapid connection floods, including SYN floods and port scanning. A separate socket traffic simulator loop generates test traffic to validate the parsing engine's accuracy.</p>
+          </div>
+
+          <div class="pj-meta">
+            <span>Layer 3 and 4 dissection</span>
+            <span>Credential leak detection</span>
+            <span>SYN flood and scan detection</span>
+          </div>
+
+          <div class="tags">
+            <span>Python</span><span>Scapy</span><span>Socket API</span><span>Npcap Engine</span><span>JSON Telemetry</span>
+          </div>
+
+          <div class="actions">
+            <a class="btn btn-primary btn-sm" href="https://github.com/alishba-cyb" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+        </article>
+
+        <article class="glass hov pj rv">
+          <div class="pj-top"><i></i>active auditing · Python</div>
+          <h3>Multi-Threaded Port Scanner &amp; Vulnerability Auditor</h3>
+          <p class="pj-desc">A high-performance network discovery engine for active perimeter auditing. Tuned multi-threaded concurrency thresholds let it map a host's topology in under two seconds.</p>
+
+          <div class="pj-feature">
+            <b>Unique feature</b>
+            <p>Low-latency connection loops and flexible target parsing accept domains or IP addresses directly. Banner grabbing captures each remote service's footprint and isolates insecure legacy protocols for risk assessment reporting.</p>
+          </div>
+
+          <div class="pj-meta">
+            <span>Maps hosts in under 2 seconds</span>
+            <span>Domain and IP input</span>
+            <span>Legacy protocol flagging</span>
+          </div>
+
+          <div class="tags">
+            <span>Python</span><span>Concurrency API</span><span>Sockets</span><span>Exception Handling</span>
+          </div>
+
+          <div class="actions">
+            <a class="btn btn-primary btn-sm" href="https://github.com/alishba-cyb/network-port-scanner" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="pj-note rv">More code and experiments are on my <a href="https://github.com/alishba-cyb" target="_blank" rel="noopener">GitHub profile</a>.</p>
     </div>
   </section>
 
