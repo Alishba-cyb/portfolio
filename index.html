@@ -51,6 +51,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;padding:calc(12px + env(sa
 .btn:hover{transform:translateY(-2px);box-shadow:0 0 32px rgba(25,245,168,.35);background:rgba(25,245,168,.12)}
 .btn-primary{border:0;color:#03120c;background:linear-gradient(100deg,var(--green),var(--blue))}
 .btn-primary:hover{background:linear-gradient(100deg,var(--green),var(--blue));box-shadow:0 8px 36px rgba(25,245,168,.45)}
+.btn-sm{min-height:42px;padding:0 22px;font-size:.88rem}
 
 /* HERO */
 .hero{min-height:100svh;display:flex;align-items:center;padding:clamp(120px,16vh,160px) 0 clamp(56px,8vw,96px)}
@@ -105,6 +106,11 @@ h3{font-size:1.12rem;line-height:1.35;font-weight:700;margin-bottom:8px}
 .list li{position:relative;padding-left:20px}
 .list li::before{content:"";position:absolute;left:0;top:.7em;width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
 .stack{display:grid;gap:var(--gap);align-content:start;min-width:0}
+
+/* FEATURED PROJECT */
+.proj{display:flex;flex-direction:column}
+.proj .tags{margin-top:18px}
+.proj .actions{margin-top:22px}
 
 /* RINGS */
 .rings{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--gap)}
@@ -275,6 +281,15 @@ footer{padding:32px 0 calc(40px + env(safe-area-inset-bottom,0px));text-align:ce
     <div class="wrap">
       <div class="head rv"><h2>Projects</h2><p>Selected work. More code lives on my GitHub.</p></div>
       <div class="cards c2">
+        <div class="glass hov pad proj rv">
+          <p class="when">Cybersecurity project · Python</p>
+          <h3>Automated Port Scanner &amp; Vulnerability Tester</h3>
+          <p>A multi-threaded Python network defense tool that scans target hosts for open ports, identifies exposed services and flags potential vulnerabilities. Concurrent scanning keeps assessments fast, and results are saved automatically to a structured report so findings can be reviewed and acted on.</p>
+          <div class="tags"><span>Python</span><span>Multi-threading</span><span>Network Security</span><span>Vulnerability Assessment</span></div>
+          <div class="actions">
+            <a class="btn btn-primary btn-sm" href="https://github.com/alishba-cyb/network-port-scanner" target="_blank" rel="noopener">View Code</a>
+          </div>
+        </div>
         <a class="glass pad rv" href="https://github.com/alishba-cyb" target="_blank" rel="noopener">
           <p class="when">Final year project · QUEST</p>
           <h3>AI-powered multi-agent academic assistant</h3>
